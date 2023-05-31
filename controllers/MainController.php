@@ -7,9 +7,9 @@ use models\About;
 
 class MainController extends Controller
 {
-    public function actionIndex()
+    public function index()
     {
-        $model = new About();
+//        $model = new About();
 
         require_once '../view/main/index.php';
     }
