@@ -17,6 +17,10 @@ class View
         http_response_code($code);
         extract($vars);
 
+        ob_start();
         require_once $this->viewPath . $viewName . '.php';
+        $content = ob_get_contents();
+        ob_clean();
+        require_once '../views/layout/main.php';
     }
 }
