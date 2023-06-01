@@ -7,23 +7,29 @@ class Router
     public $current_rout;
     public $match;
 
-//    $routes = [
-//        '~^$~' => [\controllers\MainController::class, 'index'],
-//        '~^about$~' => [\controllers\AboutController::class, 'index'],
-//        '~^about/news$~' => [\controllers\AboutController::class, 'news'],
-//    ];
     public $routes;
 
     public function route()
     {
-        var_dump($this->routes);
-//        foreach ($this->routes as $key => $route) {
-//            preg_match($key, $this->currentRoute(), $matches);
-//            if (!empty($matches)) {
-//                $this->match = true;
-//                break;
-//            }
-//        }
+        foreach ($this->routes[0] as $key => $route) {
+            preg_match('~^' . $key . '$~', $this->currentRoute(), $matches);
+            if (!empty($matches)) {
+                $this->match = true;
+                break;
+            }
+        }
+
+        if (!$matches) {
+            echo 'Error: 404';
+            return 'Error';
+        }
+
+        $controllerName = '\controllers\\' . $route[0] . 'Controller';
+        $actionName = $route[1];
+
+        $controller = new $controllerName;
+
+        return $controller->$actionName();
     }
 
     public function currentRoute()
@@ -33,6 +39,8 @@ class Router
 
     public function getRoutes($param)
     {
-        return $this->routes = array($param);
+        $this->routes = array($param);
+        $this->routes[] = $param;
+        return $this->routes;
     }
 }

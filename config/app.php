@@ -1,19 +1,9 @@
 <?php
 
-//$routes = [
-//    '~^$~' => [\controllers\MainController::class, 'index'],
-//    '~^about$~' => [\controllers\AboutController::class, 'index'],
-//    '~^about/news$~' => [\controllers\AboutController::class, 'news'],
-//];
-
-//$routes = [
-//    '' => 'index',
-//    'about' => 'index',
-//    'about/news' => 'news'
-//];
-
-$routes = new \core\Routs([
-    'about' => 'index',
-    'about/news' => 'news',
-    'category' => 'category'
+$routes = new \core\Router();
+$routes->getRoutes([
+    '' => ['Main', 'index'],
+    'about' => ['About', 'index'],
+    'about/news' => ['About', 'news'],
 ]);
+$routes->route();
