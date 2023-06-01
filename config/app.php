@@ -7,3 +7,7 @@ $routes->getRoutes([
     'about/news' => ['About', 'news'],
 ]);
 $routes->route();
+
+return [
+    'layout' => 'main'
+];

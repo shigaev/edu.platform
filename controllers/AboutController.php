@@ -9,11 +9,11 @@ class AboutController extends Controller
 {
     public function index()
     {
-        require_once '../view/about/index.php';
+        $this->view->render('about/index');
     }
 
     public function news()
     {
-        require_once '../view/about/news.php';
+        $this->view->render('about/news');
     }
 }

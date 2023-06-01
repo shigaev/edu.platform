@@ -9,8 +9,6 @@ class MainController extends Controller
 {
     public function index()
     {
-//        $model = new About();
-
-        require_once '../view/main/index.php';
+        $this->view->render('main/index');
     }
 }

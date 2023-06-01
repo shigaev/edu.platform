@@ -5,9 +5,10 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>Main Layout</title>
 </head>
 <body>
-<header>
-    <h4>Header</h4>
-</header>
+<h1>Main layout</h1>
+<p><?= __DIR__ ?></p>
+</body>
+</html>
