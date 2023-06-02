@@ -9,6 +9,7 @@ class MainController extends Controller
 {
     public function index()
     {
-        $this->view->render('main/index');
+        $title = 'Main page';
+        $this->view->render('main/index', ['title' => $title]);
     }
 }

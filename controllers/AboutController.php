@@ -9,11 +9,13 @@ class AboutController extends Controller
 {
     public function index()
     {
-        $this->view->render('about/index');
+        $title = 'About page';
+        $this->view->render('about/index', ['title' => $title]);
     }
 
     public function news()
     {
-        $this->view->render('about/news');
+        $title = 'News about page';
+        $this->view->render('about/news', ['title' => $title]);
     }
 }
