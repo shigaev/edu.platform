@@ -10,6 +10,7 @@ class View
     public function __construct($viewPath)
     {
         $this->viewPath = $viewPath;
+        $this->layout = (require_once '../config/settings.php')['layout'];
     }
 
     public function render($viewName, $vars = [], $code = 200)
@@ -21,6 +22,6 @@ class View
         require_once $this->viewPath . $viewName . '.php';
         $content = ob_get_contents();
         ob_clean();
-        require_once '../views/layout/main.php';
+        require_once "../views/layout/{$this->layout}.php";
     }
 }

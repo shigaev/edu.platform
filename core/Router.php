@@ -7,7 +7,7 @@ class Router
     public $current_rout;
     public $match;
 
-    public $routes;
+    public array $routes;
 
     public function route()
     {
@@ -34,10 +34,10 @@ class Router
 
     public function currentRoute()
     {
-        return $this->current_rout = isset($_GET['r']) ? $_GET['r'] : '';
+        return $this->current_rout = $_GET['r'] ?? '';
     }
 
-    public function getRoutes($param)
+    public function getRoutes($param): array
     {
         $this->routes = array($param);
         $this->routes[] = $param;
