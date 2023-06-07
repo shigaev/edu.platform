@@ -2,6 +2,8 @@
 
 namespace core;
 
+use Cassandra\Set;
+
 class View
 {
     public $viewPath;
@@ -9,8 +11,9 @@ class View
 
     public function __construct($viewPath)
     {
+        $init = Settings::init();
         $this->viewPath = $viewPath;
-        $this->layout = (require_once '../config/settings.php')['layout'];
+        $this->layout = $init->layout;
     }
 
     public function render($viewName, $vars = [], $code = 200)
