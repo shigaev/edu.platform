@@ -3,6 +3,7 @@
 namespace controllers;
 
 use core\Controller;
+use core\Settings;
 use models\About;
 
 class AboutController extends Controller

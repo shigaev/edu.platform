@@ -12,4 +12,10 @@ class MainController extends Controller
         $title = 'Main page';
         $this->view->render('main/index', ['title' => $title]);
     }
+
+    public function error()
+    {
+        $title = 'ERROR 404. Page not found';
+        $this->view->render('main/error', ['title' => $title], 404, 'error');
+    }
 }

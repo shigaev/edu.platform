@@ -25,6 +25,11 @@ class Settings
         return self::$_object;
     }
 
+    public function __set($key, $value)
+    {
+        $this->_settings[$key] = $value;
+    }
+
     public function __get($key)
     {
         if (array_key_exists($key, $this->_settings)) {
@@ -33,9 +38,4 @@ class Settings
             return null;
         }
     }
-
-    /*public function __set($key, $value)
-    {
-        $this->_settings[$key] = $value;
-    }*/
 }

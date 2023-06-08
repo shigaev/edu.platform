@@ -2,7 +2,7 @@
 
 namespace core;
 
-class Router
+class Router extends Controller
 {
     public $current_rout;
     public $match;
@@ -19,17 +19,12 @@ class Router
             }
         }
 
-        if (!$matches) {
-            echo 'Error: 404';
-            return 'Error';
-        }
-
         $controllerName = '\controllers\\' . $route[0] . 'Controller';
         $actionName = $route[1];
 
         $controller = new $controllerName;
 
-        return $controller->$actionName();
+        $controller->$actionName();
     }
 
     public function currentRoute()

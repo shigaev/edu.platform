@@ -16,7 +16,7 @@ class View
         $this->layout = $init->layout;
     }
 
-    public function render($viewName, $vars = [], $code = 200)
+    public function render($viewName, $vars = [], $code = 200, $layout = '')
     {
         http_response_code($code);
         extract($vars);
@@ -26,6 +26,10 @@ class View
         $content = ob_get_contents();
         ob_clean();
 
-        require_once "../views/layout/{$this->layout}.php";
+        if (!empty($layout)) {
+            require_once "../views/layout/{$layout}.php";
+        } else {
+            require_once "../views/layout/{$this->layout}.php";
+        }
     }
 }
