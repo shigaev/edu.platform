@@ -2,5 +2,5 @@
 
 return [
     'layout' => 'main',
-    'appName' => 'Myself education platform'
+    'appName' => 'Educational platform'
 ];

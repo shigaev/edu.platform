@@ -9,10 +9,16 @@ class Router extends Controller
 
     public array $routes;
 
-    public function route()
+    public function route($prefix = '')
     {
         foreach ($this->routes[0] as $key => $route) {
-            preg_match('~^' . $key . '$~', $this->currentRoute(), $matches);
+
+            if ($this->currentRoute() == '') {
+                preg_match('~^' . $key . '$~', $this->currentRoute(), $matches);
+            } else {
+                preg_match('~^' . $key . $prefix . '$~', $this->currentRoute(), $matches);
+            }
+
             if (!empty($matches)) {
                 $this->match = true;
                 break;
@@ -23,7 +29,6 @@ class Router extends Controller
         $actionName = $route[1];
 
         $controller = new $controllerName;
-
         $controller->$actionName();
     }
 
@@ -34,7 +39,6 @@ class Router extends Controller
 
     public function getRoutes($param): array
     {
-        $this->routes = array($param);
         $this->routes[] = $param;
         return $this->routes;
     }
