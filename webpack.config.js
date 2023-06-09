@@ -17,7 +17,7 @@ module.exports = {
     },
     devServer: {
         allowedHosts: [
-            'yii.basic.webpack',
+            'edu.platform',
         ],
         host: 'localhost',
         port: 9092,
