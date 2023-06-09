@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="/css/bootstrap.min.css">
     <title><?= $title ?></title>
 </head>
-<body class="d-flex flex-column h-100 bg-dark-subtle">
+<body class="d-flex flex-column h-100" style="background-color: #eef2f6;">
 
 <main class="w-100 m-auto d-flex justify-content-center">
     <div class="error-content">
@@ -16,9 +16,11 @@
     </div>
 </main>
 
-<footer class="footer mt-auto py-3 bg-dark-subtle">
+<footer class="footer mt-auto py-3" style="background-color: #eef2f6;">
     <div class="container">
-        <span class="text-body-secondary">Place sticky footer content here.</span>
+        <span class="text-body-secondary">
+            <?= \core\Settings::init()->appName ?> <?= date('Y') ?>
+        </span>
     </div>
 </footer>
 </body>

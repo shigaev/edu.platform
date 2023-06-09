@@ -6,11 +6,12 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/index.css">
     <title><?= $title ?></title>
 </head>
 <body class="d-flex flex-column h-100">
 <header>
-    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <nav class="navbar navbar-expand-lg">
         <div class="container">
             <a class="navbar-brand" href="/"><?= \core\Settings::init()->appName; ?></a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
@@ -41,10 +42,12 @@
         <?= $content ?>
     </div>
 </main>
-<footer class="footer mt-auto py-3 bg-body-tertiary">
+<footer class="footer mt-auto py-3">
     <div class="container">
-        <span class="text-body-secondary">Place sticky footer content here.</span>
+        <span class="footer-text">Place sticky footer content here.</span>
     </div>
 </footer>
+<script src="/js/index.js"></script>
+<script src="/js/runtime.js"></script>
 </body>
 </html>
