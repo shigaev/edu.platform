@@ -13,7 +13,7 @@ class Router extends Controller
     {
         foreach ($this->routes[0] as $key => $route) {
 
-            if ($this->currentRoute() == '') {
+            if ($this->currentRoute() === '') {
                 preg_match('~^' . $key . '$~', $this->currentRoute(), $matches);
             } else {
                 preg_match('~^' . $key . $prefix . '$~', $this->currentRoute(), $matches);
@@ -25,11 +25,13 @@ class Router extends Controller
             }
         }
 
+        unset($matches[0]);
+
         $controllerName = '\controllers\\' . $route[0] . 'Controller';
         $actionName = $route[1];
 
         $controller = new $controllerName;
-        $controller->$actionName();
+        $controller->$actionName(...$matches);
     }
 
     public function currentRoute()

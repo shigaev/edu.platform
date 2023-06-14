@@ -3,6 +3,7 @@
 namespace controllers;
 
 use core\Controller;
+use core\Db;
 use models\About;
 
 class MainController extends Controller
@@ -10,7 +11,10 @@ class MainController extends Controller
     public function index()
     {
         $title = 'Main page';
-        $this->view->render('main/index', ['title' => $title]);
+
+        $mainPage = $this->instance->query('SELECT * FROM `main_page`');
+
+        $this->view->render('main/index', ['title' => $title, 'main' => $mainPage]);
     }
 
     public function error()

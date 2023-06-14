@@ -6,7 +6,7 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="/css/bootstrap.min.css">
-    <title>Main Layout</title>
+    <title><?= $title ?></title>
 </head>
 <body class="d-flex flex-column h-100">
 <header>
@@ -28,6 +28,9 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="/about/news">About / News</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/articles">Articles</a>
                     </li>
                 </ul>
                 <form role="search">
