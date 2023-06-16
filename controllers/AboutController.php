@@ -17,6 +17,6 @@ class AboutController extends Controller
     public function news()
     {
         $title = 'News about page';
-        $this->view->render('about/news', ['title' => $title], 200, 'black');
+        $this->view->render('about/news', ['title' => $title]);
     }
 }

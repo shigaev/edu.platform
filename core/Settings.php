@@ -2,6 +2,9 @@
 
 namespace core;
 
+/**
+ * The singleton design pattern
+ */
 class Settings
 {
     private static $_object = null;

@@ -11,13 +11,13 @@
         </li>
         <li class="breadcrumb-item active" aria-current="page">
             <?php foreach ($article as $item): ?>
-                <?= $item['title'] ?>
+                <?= $item->getTitle(); ?>
             <?php endforeach; ?>
         </li>
     </ol>
 </nav>
 
 <?php foreach ($article as $item): ?>
-    <h2><?= $item['title'] ?></h2>
-    <p><?= $item['content'] ?></p>
+    <h2><?= $item->getTitle(); ?></h2>
+    <p><?= $item->getContent(); ?></p>
 <?php endforeach; ?>

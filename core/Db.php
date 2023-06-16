@@ -2,6 +2,9 @@
 
 namespace core;
 
+/**
+ * The singleton design pattern
+ */
 class Db
 {
     private static ?Db $instance = null;
@@ -19,6 +22,11 @@ class Db
         $this->connect->exec('SET NAMES UTF8');
     }
 
+    private function __clone()
+    {
+        // TODO: Implement __clone() method.
+    }
+
     public static function getInstance(): ?Db
     {
         if (self::$instance === null) {
@@ -32,11 +40,11 @@ class Db
         return $this->connect;
     }
 
-    public function query(string $sql, $params = []): ?array
+    public function query(string $sql, $params = [], string $className = 'stdClass'): ?array
     {
         $prepare = $this->connect->prepare($sql);
         $prepare->execute($params);
-        
-        return $prepare->fetchAll();
+
+        return $prepare->fetchAll(\PDO::FETCH_CLASS, $className);
     }
 }

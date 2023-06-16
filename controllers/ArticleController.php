@@ -3,6 +3,7 @@
 namespace controllers;
 
 use core\Controller;
+use models\Article;
 
 class ArticleController extends Controller
 {
@@ -10,7 +11,7 @@ class ArticleController extends Controller
     {
         $title = 'Articles';
 
-        $articles = $this->instance->query('SELECT * FROM `article`');
+        $articles = $this->instance->query('SELECT * FROM `article`', [], Article::class);
 
         $this->view->render('article/index', ['title' => $title, 'articles' => $articles]);
     }
@@ -19,7 +20,7 @@ class ArticleController extends Controller
     {
         $title = 'View Article';
 
-        $article = $this->instance->query('SELECT * FROM `article` WHERE `id` = :id', [':id' => $id]);
+        $article = $this->instance->query('SELECT * FROM `article` WHERE `id` = :id', [':id' => $id], Article::class);
 
         if ($article === []) {
             $this->view->render('main/error', ['title' => $title], 404, 'error');

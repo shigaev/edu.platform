@@ -1,6 +1,8 @@
 <?php foreach ($articles as $article): ?>
     <h4>
-        <a href="<?= '/articles/' . $article['id'] ?>"><?= $article['title'] ?></a>
+        <a href="/articles/<?= $article->getId(); ?>">
+            <?= $article->getTitle(); ?>
+        </a>
     </h4>
-    <p><?= $article['description'] ?></p>
+    <p><?= $article->getDescription(); ?></p>
 <?php endforeach; ?>
