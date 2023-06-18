@@ -2,26 +2,18 @@
 
 namespace models;
 
-class Article
+use core\ActiveRecord;
+use core\Db;
+
+class Article extends ActiveRecord
 {
-    private int $id;
-    private string $title;
-    private string $description;
-    private string $content;
-    private int $author_id;
-    private string $created_at;
-    private string $updated_at;
-
-    public function __set($name, $value)
-    {
-        $camelCaseName = $this->underscoreToCamelCase($name);
-        $this->$camelCaseName = $value;
-    }
-
-    private function underscoreToCamelCase(string $source): string
-    {
-        return lcfirst(str_replace('_', '', ucwords($source, '_')));
-    }
+    protected int $id;
+    protected string $title;
+    protected string $description;
+    protected string $content;
+    protected int $author_id;
+    protected string $created_at;
+    protected string $updated_at;
 
     public function getId(): int
     {
@@ -51,5 +43,10 @@ class Article
     public function getCreatedAt(): string
     {
         return $this->created_at;
+    }
+
+    public static function getTableName(): string
+    {
+        return 'article';
     }
 }

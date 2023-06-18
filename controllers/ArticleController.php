@@ -11,7 +11,7 @@ class ArticleController extends Controller
     {
         $title = 'Articles';
 
-        $articles = $this->instance->query('SELECT * FROM `article`', [], Article::class);
+        $articles = Article::findAll();
 
         $this->view->render('article/index', ['title' => $title, 'articles' => $articles]);
     }
