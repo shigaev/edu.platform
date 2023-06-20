@@ -10,14 +10,17 @@
             <a class="link-body-emphasis fw-semibold text-decoration-none" href="/articles">Articles</a>
         </li>
         <li class="breadcrumb-item active" aria-current="page">
-            <?php foreach ($article as $item): ?>
-                <?= $item->getTitle(); ?>
-            <?php endforeach; ?>
+            <?= $article->getTitle(); ?>
         </li>
     </ol>
 </nav>
-
-<?php foreach ($article as $item): ?>
-    <h2><?= $item->getTitle(); ?></h2>
-    <p><?= $item->getContent(); ?></p>
-<?php endforeach; ?>
+<h2><?= $article->getTitle(); ?></h2>
+<p><?= $article->getContent(); ?></p>
+<div class="row">
+    <div class="col-md-6">
+        <span class="badge rounded-pill text-bg-secondary"><?= $article->getCreatedAt(); ?></span>
+    </div>
+    <div class="col-md-6 text-md-end">
+        <span class="badge rounded-pill text-bg-primary">Автор: <?= $article->getAuthor()->getName(); ?></span>
+    </div>
+</div>

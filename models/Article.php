@@ -3,7 +3,6 @@
 namespace models;
 
 use core\ActiveRecord;
-use core\Db;
 
 class Article extends ActiveRecord
 {
@@ -37,6 +36,11 @@ class Article extends ActiveRecord
     public function getAuthorId(): int
     {
         return $this->author_id;
+    }
+
+    public function getAuthor(): ?ActiveRecord
+    {
+        return User::findOne($this->author_id);
     }
 
     public function getCreatedAt(): string
