@@ -30,7 +30,7 @@ class Db
     public static function getInstance(): ?Db
     {
         if (self::$instance === null) {
-            self::$instance = new Db();
+            self::$instance = new self();
         }
         return self::$instance;
     }
