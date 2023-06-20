@@ -9,18 +9,16 @@ class ArticleController extends Controller
 {
     public function index()
     {
-        $title = 'Articles';
-
         $articles = Article::findAll();
+        $title = 'Articles';
 
         $this->view->render('article/index', ['title' => $title, 'articles' => $articles]);
     }
 
     public function view(int $id)
     {
-        $title = 'View Article';
-
-        $article = $this->instance->query('SELECT * FROM `article` WHERE `id` = :id', [':id' => $id], Article::class);
+        $article = Article::findOne($id);
+        $title = $article[0]->getTitle();
 
         if ($article === []) {
             $this->view->render('main/error', ['title' => $title], 404, 'error');

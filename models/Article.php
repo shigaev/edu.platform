@@ -7,7 +7,6 @@ use core\Db;
 
 class Article extends ActiveRecord
 {
-    protected int $id;
     protected string $title;
     protected string $description;
     protected string $content;
@@ -15,9 +14,9 @@ class Article extends ActiveRecord
     protected string $created_at;
     protected string $updated_at;
 
-    public function getId(): int
+    public static function getTableName(): string
     {
-        return $this->id;
+        return 'article';
     }
 
     public function getTitle(): string
@@ -43,10 +42,5 @@ class Article extends ActiveRecord
     public function getCreatedAt(): string
     {
         return $this->created_at;
-    }
-
-    public static function getTableName(): string
-    {
-        return 'article';
     }
 }

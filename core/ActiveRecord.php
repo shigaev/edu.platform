@@ -26,7 +26,19 @@ abstract class ActiveRecord
     {
         $db = Db::getInstance();
         // позднее статическое связывание
-        return $db->query('SELECT * FROM ' . static::getTableName() . ';', [], static::class);
+        return $db->query('SELECT * FROM ' . static::getTableName() . ';',
+            [],
+            static::class);
+    }
+
+    public static function findOne($id): ?array
+    {
+        $db = Db::getInstance();
+        // позднее статическое связывание
+        return $db->query('SELECT * FROM ' . static::getTableName() . ' WHERE id = :id',
+            [':id' => $id],
+            static::class
+        );
     }
 
     abstract protected static function getTableName(): string;
