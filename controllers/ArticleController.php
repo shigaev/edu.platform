@@ -3,6 +3,7 @@
 namespace controllers;
 
 use core\Controller;
+use core\Db;
 use models\Article;
 use models\User;
 
@@ -28,5 +29,46 @@ class ArticleController extends Controller
             'title' => $title,
             'article' => $article,
         ]);
+    }
+
+    public function edit($id)
+    {
+        $article = Article::findOne($id);
+        $title = 'Edit | ' . $article->getTitle();
+
+        /*$article->setTitle('Новый заголовок');
+        $article->setContent('Новый контент статьи');*/
+        $article->save();
+
+        $this->view->render('article/edit', ['article' => $article, 'title' => $title]);
+    }
+
+    public function add(): void
+    {
+        $title = 'Add article';
+
+        $author = User::findOne(1);
+        $article = new Article();
+        $article->setAuthor($author);
+
+        $article->setTitle('Новый заголовок 3');
+        $article->setContent('Новый контент статьи 3');
+
+        $article->save();
+
+        $this->view->render('article/add', ['article' => $article, 'title' => $title]);
+    }
+
+    public function delete($id)
+    {
+        $title = 'Delete article';
+        $article = Article::findOne($id);
+
+        if ($article != null) {
+            $article->delete();
+            $this->view->render('article/delete', ['id' => $id, 'title' => $title]);
+        } else {
+            $this->view->render('main/error', [], 404, 'error');
+        }
     }
 }

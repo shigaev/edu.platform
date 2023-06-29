@@ -6,16 +6,26 @@ use core\ActiveRecord;
 
 class Article extends ActiveRecord
 {
-    protected string $title;
-    protected string $description;
-    protected string $content;
-    protected int $author_id;
-    protected string $created_at;
-    protected string $updated_at;
+    protected $id;
+    protected ?string $title = '';
+    protected ?string $description = '';
+    protected ?string $content = '';
+    protected $author_id = null;
+    protected ?string $created_at = null;
+    protected ?string $updated_at = null;
 
     public static function getTableName(): string
     {
         return 'article';
+    }
+
+    /**
+     * @param User $author
+     * @return void
+     */
+    public function setAuthor(User $author): void
+    {
+        $this->author_id = $author->getId();
     }
 
     public function getTitle(): string
@@ -23,14 +33,29 @@ class Article extends ActiveRecord
         return $this->title;
     }
 
-    public function getDescription(): string
+    public function setTitle($title)
+    {
+        $this->title = $title;
+    }
+
+    public function getDescription(): ?string
     {
         return $this->description;
     }
 
-    public function getContent(): string
+    public function setDescription($description)
+    {
+        $this->description = $description;
+    }
+
+    public function getContent(): ?string
     {
         return $this->content;
+    }
+
+    public function setContent($content)
+    {
+        $this->content = $content;
     }
 
     public function getAuthorId(): int

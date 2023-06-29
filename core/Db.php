@@ -47,4 +47,9 @@ class Db
 
         return $prepare->fetchAll(\PDO::FETCH_CLASS, $className);
     }
+
+    public function getLastInsert(): int
+    {
+        return (int)$this->connect->lastInsertId();
+    }
 }
