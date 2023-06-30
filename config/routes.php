@@ -10,6 +10,7 @@ $routes->getRoutes([
     'articles/(\d+)/edit' => ['Article', 'edit'],
     'articles/(\d+)/delete' => ['Article', 'delete'],
     'articles/add' => ['Article', 'add'],
+    'users/register' => ['User', 'signUp'],
     '.*' => ['Main', 'error']
 ]);
 $routes->route();

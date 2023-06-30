@@ -3,11 +3,12 @@
 namespace models;
 
 use core\ActiveRecord;
+use exceptions\InvalidArgument;
 
 class User extends ActiveRecord
 {
     protected $id;
-    protected string $name;
+    protected string $username;
     protected int $age;
 
     public static function getTableName(): string
@@ -17,7 +18,7 @@ class User extends ActiveRecord
 
     public function getName(): string
     {
-        return $this->name;
+        return $this->username;
     }
 
     public function setName($name)
@@ -33,5 +34,27 @@ class User extends ActiveRecord
     public function setAge($age)
     {
         $this->age = $age;
+    }
+
+    /**
+     * @throws InvalidArgument
+     */
+    public static function signUp(array $userData): void
+    {
+        if (empty($userData['username'])) {
+            throw new InvalidArgument('Не заполнено поле Username');
+        }
+
+        if (empty($userData['nickname'])) {
+            throw new InvalidArgument('Не заполнено поле Nickname');
+        }
+
+        if (empty($userData['email'])) {
+            throw new InvalidArgument('Не заполнено поле Email');
+        }
+
+        if (empty($userData['password'])) {
+            throw new InvalidArgument('Не заполнено поле Password');
+        }
     }
 }
