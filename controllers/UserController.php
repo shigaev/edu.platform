@@ -19,6 +19,11 @@ class UserController extends Controller
                 $this->view->render('user/register', ['title' => $title, 'error' => $e->getMessage()]);
                 return;
             }
+
+            if ($user instanceof User) {
+                $this->view->render('user/registerSuccessful');
+                return;
+            }
         }
 
         $this->view->render('user/register', ['title' => $title]);
