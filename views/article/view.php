@@ -21,6 +21,6 @@
         <span class="badge rounded-pill text-bg-secondary"><?= $article->getCreatedAt(); ?></span>
     </div>
     <div class="col-md-6 text-md-end">
-        <span class="badge rounded-pill text-bg-primary">Автор: <?= $article->getAuthor()->getName(); ?></span>
+        <span class="badge rounded-pill text-bg-primary">Автор: <?= $article->getAuthor()->getUserName(); ?></span>
     </div>
 </div>

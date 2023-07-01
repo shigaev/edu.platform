@@ -9,17 +9,28 @@ abstract class ActiveRecord
 {
     protected $id;
 
+    /**
+     * @return int
+     */
     public function getId(): int
     {
         return $this->id;
     }
 
+    /**
+     * @param $name
+     * @param $value
+     * @return void
+     */
     public function __set($name, $value)
     {
         $camelCaseName = $this->underscoreToCamelCase($name);
         $this->$camelCaseName = $value;
     }
 
+    /**
+     * @return void
+     */
     public function save(): void
     {
         $mapProperties = $this->reflectionProperties();
@@ -31,6 +42,11 @@ abstract class ActiveRecord
     }
 
     // UPDATE
+
+    /**
+     * @param array $mapProperties
+     * @return void
+     */
     public function update(array $mapProperties): void
     {
         $columns2params = [];
@@ -51,6 +67,11 @@ abstract class ActiveRecord
     }
 
     // INSERT
+
+    /**
+     * @param $mapProperties
+     * @return void
+     */
     public function insert($mapProperties)
     {
         $filterProperties = array_filter($mapProperties);
@@ -77,6 +98,10 @@ abstract class ActiveRecord
     }
 
     // DELETE
+
+    /**
+     * @return void
+     */
     public function delete()
     {
         $db = Db::getInstance();
@@ -87,6 +112,9 @@ abstract class ActiveRecord
         $this->id = null;
     }
 
+    /**
+     * @return void
+     */
     private function refresh(): void
     {
         $objectFromDb = static::findOne($this->id);
@@ -100,6 +128,9 @@ abstract class ActiveRecord
         }
     }
 
+    /**
+     * @return array
+     */
     private function reflectionProperties(): array
     {
         $reflector = new \ReflectionObject($this);
@@ -115,6 +146,9 @@ abstract class ActiveRecord
         return $mapProperties;
     }
 
+    /**
+     * @return array|null
+     */
     public static function findAll(): ?array
     {
         $db = Db::getInstance();
@@ -124,6 +158,10 @@ abstract class ActiveRecord
             static::class);
     }
 
+    /**
+     * @param $id
+     * @return self|null
+     */
     public static function findOne($id): ?self
     {
         $db = Db::getInstance();
@@ -135,15 +173,46 @@ abstract class ActiveRecord
         return $entity ? $entity[0] : null;
     }
 
+    /**
+     * @param $columnName
+     * @param $value
+     * @return self|null
+     */
+    public static function findOneColumn($columnName, $value): ?self
+    {
+        $db = Db::getInstance();
+        $query = $db->query('SELECT * FROM ' . static::getTableName() . ' WHERE ' . $columnName . ' = :value LIMIT 1;',
+            [':value' => $value],
+            static::class
+        );
+
+        if ($query == []) {
+            return null;
+        }
+
+        return $query[0];
+    }
+
+    /**
+     * @param string $source
+     * @return string
+     */
     private function underscoreToCamelCase(string $source): string
     {
         return lcfirst(str_replace('_', '', ucwords($source, '_')));
     }
 
+    /**
+     * @param string $source
+     * @return string
+     */
     private function camelCaseToUnderscore(string $source): string
     {
         return strtolower(preg_replace('/(?<!^)[A-Z]/', '_$0', $source));
     }
 
+    /**
+     * @return string
+     */
     abstract protected static function getTableName(): string;
 }
