@@ -5,6 +5,7 @@ namespace controllers;
 use core\Controller;
 use core\Db;
 use models\About;
+use models\User;
 
 class MainController extends Controller
 {

@@ -73,7 +73,7 @@
             </form>
 
             <div class="text-end">
-                <button type="button" class="btn btn-light text-dark me-2">Login</button>
+                <a type="button" class="btn btn-light text-dark me-2" href="/users/login">Login</a>
                 <a class="btn btn-primary" href="/users/register">Sign-up</a>
             </div>
         </div>

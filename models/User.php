@@ -3,6 +3,7 @@
 namespace models;
 
 use core\ActiveRecord;
+use Exception;
 use exceptions\InvalidArgument;
 
 class User extends ActiveRecord
@@ -57,8 +58,14 @@ class User extends ActiveRecord
         return $this->email;
     }
 
+    public function getAuthToken()
+    {
+        return $this->auth_token;
+    }
+
     /**
      * @throws InvalidArgument
+     * @throws Exception
      */
     public static function signUp(array $userData): User
     {
@@ -109,5 +116,53 @@ class User extends ActiveRecord
         $user->save();
 
         return $user;
+    }
+
+    public static function hash($password)
+    {
+        return password_hash($password, PASSWORD_DEFAULT);
+    }
+
+    /**
+     * @throws InvalidArgument
+     * @throws Exception
+     */
+    public static function signIn(array $userData): User
+    {
+        if (empty($userData['email'])) {
+            throw new InvalidArgument('Email не передан');
+        }
+
+        if (empty($userData['password'])) {
+            throw new InvalidArgument('Password не передан');
+        }
+
+        $user = User::findOneColumn('email', $userData['email']);
+
+        if ($user === null) {
+            throw new InvalidArgument('Пользователя с таким email не существует');
+        }
+
+        if (!password_verify($userData['password'], $user->getPasswordHash())) {
+            throw new InvalidArgument('Неправильный пароль');
+        }
+
+        (new User)->refreshAuthToken();
+        $user->save();
+
+        return $user;
+    }
+
+    public function getPasswordHash()
+    {
+        return $this->password_hash;
+    }
+
+    /**
+     * @throws Exception
+     */
+    private function refreshAuthToken()
+    {
+        $this->auth_token = sha1(random_bytes(100)) . sha1(random_bytes(100));
     }
 }

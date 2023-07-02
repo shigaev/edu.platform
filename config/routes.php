@@ -11,6 +11,7 @@ $routes->getRoutes([
     'articles/(\d+)/delete' => ['Article', 'delete'],
     'articles/add' => ['Article', 'add'],
     'users/register' => ['User', 'signUp'],
+    'users/login' => ['User', 'signIn'],
     '.*' => ['Main', 'error']
 ]);
 $routes->route();
