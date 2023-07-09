@@ -48,4 +48,9 @@ class UserController extends Controller
 
         $this->view->render('user/login', ['title' => $title]);
     }
+
+    public function logout()
+    {
+        UserAuthService::logoutFromAccount();
+    }
 }

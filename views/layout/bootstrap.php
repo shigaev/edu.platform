@@ -71,10 +71,24 @@
             <form class="col-12 col-lg-auto mb-2 mb-lg-0 me-lg-auto" role="search">
                 <input type="search" class="form-control" placeholder="Search..." aria-label="Search">
             </form>
-
             <div class="text-end">
-                <a type="button" class="btn btn-light text-dark me-2" href="/users/login">Login</a>
-                <a class="btn btn-primary" href="/users/register">Sign-up</a>
+                <?php if (!empty($user)): ?>
+                    <span class="badge d-flex align-items-center mx-3 p-1 pe-2 text-success-emphasis bg-success-subtle border border-success-subtle rounded-pill">
+                        <img class="rounded-circle me-1" width="24" height="24" src="https://github.com/mdo.png" alt="">
+                        <?= $user->getNickName(); ?>
+                    </span>
+                <?php else: ?>
+                    <span class="badge bg-warning-subtle border border-warning-subtle text-warning-emphasis rounded-pill">
+                        Авторизуйтесь на сайте
+                    </span>
+                <?php endif; ?>
+
+                <?php if (!empty($user)): ?>
+                    <a type="button" class="btn btn-light text-dark me-2" href="/users/logout">Выйти</a>
+                <?php else: ?>
+                    <a type="button" class="btn btn-light text-dark me-2" href="/users/login">Login</a>
+                    <a class="btn btn-primary" href="/users/register">Sign-up</a>
+                <?php endif; ?>
             </div>
         </div>
     </div>
@@ -82,6 +96,7 @@
 
 <main class="flex-shrink-0 m-3">
     <div class="container">
+        <!--        --><?php //var_dump($_SERVER['REQUEST_URI']); ?>
         <?= $content ?>
     </div>
 </main>

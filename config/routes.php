@@ -12,6 +12,7 @@ $routes->getRoutes([
     'articles/add' => ['Article', 'add'],
     'users/register' => ['User', 'signUp'],
     'users/login' => ['User', 'signIn'],
+    'users/logout' => ['User', 'logout'],
     '.*' => ['Main', 'error']
 ]);
 $routes->route();

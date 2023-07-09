@@ -9,6 +9,8 @@ class View
     public $viewPath;
     public $layout;
 
+    private $vars = [];
+
     public function __construct($viewPath)
     {
         $init = Settings::init();
@@ -16,9 +18,15 @@ class View
         $this->layout = $init->layout;
     }
 
-    public function render($viewName, $vars = [], $code = 200, $layout = '')
+    public function setVars(string $name, $value): void
+    {
+        $this->vars[$name] = $value;
+    }
+
+    public function render($viewName, array $vars = [], $code = 200, $layout = '')
     {
         http_response_code($code);
+        extract($this->vars);
         extract($vars);
 
         ob_start();

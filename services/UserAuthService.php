@@ -12,6 +12,13 @@ class UserAuthService
         setcookie('token', $token, 0, '/', '', false, true);
     }
 
+    public static function logoutFromAccount()
+    {
+        setcookie("token", "", time() - 3600, '/');
+        header("Location: /");
+        exit;
+    }
+
     public static function getUserByToken(): ?User
     {
         $token = $_COOKIE['token'] ?? '';
