@@ -3,6 +3,7 @@
 namespace models;
 
 use core\ActiveRecord;
+use http\Exception\InvalidArgumentException;
 
 class Article extends ActiveRecord
 {
@@ -71,5 +72,29 @@ class Article extends ActiveRecord
     public function getCreatedAt(): string
     {
         return $this->created_at;
+    }
+
+    public static function createArrayForm(array $fields, User $author): Article
+    {
+        if (empty($fields['title'])) {
+            throw new InvalidArgumentException('Не передано название статьи');
+        }
+
+        if (empty($fields['description'])) {
+            throw new InvalidArgumentException('Не передано описание статьи');
+        }
+
+        if (empty($fields['content'])) {
+            throw new InvalidArgumentException('Не передан контент статьи');
+        }
+
+        $article = new Article();
+        $article->setAuthor($author);
+        $article->setTitle($fields['title']);
+        $article->setDescription($fields['description']);
+        $article->setContent($fields['content']);
+        $article->save();
+
+        return $article;
     }
 }

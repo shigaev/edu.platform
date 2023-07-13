@@ -61,7 +61,19 @@ class ArticleController extends Controller
             throw new UnauthorizedException();
         }
 
-        $this->view->render('article/add', [/*'article' => $article,*/ 'title' => $title]);
+        if (!empty($_POST)) {
+            try {
+                $article = Article::createArrayForm($_POST, $this->user);
+            } catch (\InvalidArgumentException $e) {
+                $this->view->render('article/add', ['error' => $e->getMessage()]);
+                return;
+            }
+
+            header('Location: /articles/' . $article->getId(), true, 302);
+            exit();
+        }
+
+        $this->view->render('article/add', ['title' => $title]);
     }
 
     public function delete($id)
