@@ -4,6 +4,7 @@ namespace controllers;
 
 use core\Controller;
 use core\Db;
+use exceptions\UnauthorizedException;
 use models\Article;
 use models\User;
 
@@ -47,16 +48,20 @@ class ArticleController extends Controller
     {
         $title = 'Add article';
 
-        $author = User::findOne(1);
+        /*$author = User::findOne(1);
         $article = new Article();
         $article->setAuthor($author);
 
         $article->setTitle('Новый заголовок 3');
         $article->setContent('Новый контент статьи 3');
 
-        $article->save();
+        $article->save();*/
 
-        $this->view->render('article/add', ['article' => $article, 'title' => $title]);
+        if ($this->user === null) {
+            throw new UnauthorizedException();
+        }
+
+        $this->view->render('article/add', [/*'article' => $article,*/ 'title' => $title]);
     }
 
     public function delete($id)

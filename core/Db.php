@@ -2,6 +2,8 @@
 
 namespace core;
 
+use exceptions\DbException;
+
 /**
  * The singleton design pattern
  */
@@ -12,14 +14,19 @@ class Db
 
     private function __construct()
     {
-        $settings = Settings::init();
+        try {
+            $settings = Settings::init();
 
-        $this->connect = new \PDO(
-            "mysql:host={$settings->db['host']};
+            $this->connect = new \PDO(
+                "mysql:host={$settings->db['host']};
             dbname={$settings->db['dbName']}",
-            $settings->db['user'],
-            $settings->db['pass']);
-        $this->connect->exec('SET NAMES UTF8');
+                $settings->db['user'],
+                $settings->db['pass']
+            );
+            $this->connect->exec('SET NAMES UTF8');
+        } catch (\PDOException $e) {
+            throw new DbException('Ошибка при подключении к базе данных: ' . $e->getMessage());
+        }
     }
 
     private function __clone()

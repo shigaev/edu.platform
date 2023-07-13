@@ -73,18 +73,18 @@
             </form>
             <div class="text-end">
                 <?php if (!empty($user)): ?>
-                    <span class="badge d-flex align-items-center mx-3 p-1 pe-2 text-success-emphasis bg-success-subtle border border-success-subtle rounded-pill">
-                        <img class="rounded-circle me-1" width="24" height="24" src="https://github.com/mdo.png" alt="">
+                    <span class="badge align-items-center mx-3 p-1 pe-2 text-success-emphasis bg-success-subtle border border-success-subtle rounded-pill">
+                        <img class="rounded-circle me-1" width="24" height="24" src="https://avatars.githubusercontent.com/u/29180000?v=4" alt="">
                         <?= $user->getNickName(); ?>
                     </span>
                 <?php else: ?>
                     <span class="badge bg-warning-subtle border border-warning-subtle text-warning-emphasis rounded-pill">
-                        Авторизуйтесь на сайте
+                        Авторизуйтесь в системе
                     </span>
                 <?php endif; ?>
 
                 <?php if (!empty($user)): ?>
-                    <a type="button" class="btn btn-light text-dark me-2" href="/users/logout">Выйти</a>
+                    <a type="button" class="btn btn-warning text-dark me-2" href="/users/logout">Выйти</a>
                 <?php else: ?>
                     <a type="button" class="btn btn-light text-dark me-2" href="/users/login">Login</a>
                     <a class="btn btn-primary" href="/users/register">Sign-up</a>
@@ -96,7 +96,6 @@
 
 <main class="flex-shrink-0 m-3">
     <div class="container">
-        <!--        --><?php //var_dump($_SERVER['REQUEST_URI']); ?>
         <?= $content ?>
     </div>
 </main>

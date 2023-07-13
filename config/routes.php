@@ -13,6 +13,6 @@ $routes->getRoutes([
     'users/register' => ['User', 'signUp'],
     'users/login' => ['User', 'signIn'],
     'users/logout' => ['User', 'logout'],
-    '.*' => ['Main', 'error']
+    '.*' => ['Error', 'notFound']
 ]);
 $routes->route();

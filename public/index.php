@@ -1,4 +1,13 @@
 <?php
 
 require_once '../core/Autoloader.php';
-require_once '../config/routes.php';
+
+try {
+    require_once '../config/routes.php';
+} catch (\exceptions\DbException $e) {
+    $view = new \core\View('../views/');
+    $view->render('error/db-error', ['error' => $e->getMessage(), 'title' => $e->getMessage()]);
+} catch (\exceptions\UnauthorizedException $e) {
+    $view = new \core\View('../views/');
+    $view->render('error/401', ['error' => $e->getMessage(), 'title' => 'Вы не авторизованы'], 401);
+}
