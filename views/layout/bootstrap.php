@@ -72,9 +72,11 @@
                 <input type="search" class="form-control" placeholder="Search..." aria-label="Search">
             </form>
             <div class="text-end">
+<!--                --><?php //var_dump($user); ?>
                 <?php if (!empty($user)): ?>
                     <span class="badge align-items-center mx-3 p-1 pe-2 text-success-emphasis bg-success-subtle border border-success-subtle rounded-pill">
-                        <img class="rounded-circle me-1" width="24" height="24" src="https://avatars.githubusercontent.com/u/29180000?v=4" alt="">
+                        <img class="rounded-circle me-1" width="24" height="24"
+                             src="https://avatars.githubusercontent.com/u/29180000?v=4" alt="">
                         <?= $user->getNickName(); ?>
                     </span>
                 <?php else: ?>

@@ -53,6 +53,16 @@ class User extends ActiveRecord
         $this->email = $email;
     }
 
+    public function setUserRole($role)
+    {
+        $this->role = $role;
+    }
+
+    public function getUserRole(): string
+    {
+        return $this->role;
+    }
+
     public function getEmail(): string
     {
         return $this->email;

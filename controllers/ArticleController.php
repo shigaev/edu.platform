@@ -4,6 +4,7 @@ namespace controllers;
 
 use core\Controller;
 use core\Db;
+use exceptions\Forbidden;
 use exceptions\UnauthorizedException;
 use models\Article;
 use models\User;
@@ -57,8 +58,13 @@ class ArticleController extends Controller
 
         $article->save();*/
 
+
         if ($this->user === null) {
             throw new UnauthorizedException();
+        }
+
+        if ($this->user->getUserRole() !== 'admin') {
+            throw new Forbidden('Вы не можете добавлять статьи так как у вас недостаточно прав.');
         }
 
         if (!empty($_POST)) {
@@ -72,6 +78,7 @@ class ArticleController extends Controller
             header('Location: /articles/' . $article->getId(), true, 302);
             exit();
         }
+
 
         $this->view->render('article/add', ['title' => $title]);
     }

@@ -1,5 +1,7 @@
 <?php
 
+use services\UserAuthService;
+
 require_once '../core/Autoloader.php';
 
 try {
@@ -10,4 +12,8 @@ try {
 } catch (\exceptions\UnauthorizedException $e) {
     $view = new \core\View('../views/');
     $view->render('error/401', ['error' => $e->getMessage(), 'title' => 'Вы не авторизованы'], 401);
+} catch (\exceptions\Forbidden $e) {
+    $user = UserAuthService::getUserByToken();
+    $view = new \core\View('../views/');
+    $view->render('error/403', ['error' => $e->getMessage(), 'title' => 'Недостаточно прав', 'user' => $user], 403);
 }
