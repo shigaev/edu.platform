@@ -2,6 +2,7 @@
 
 namespace services;
 
+use core\Router;
 use models\User;
 
 class UserAuthService

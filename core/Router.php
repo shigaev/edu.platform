@@ -2,18 +2,19 @@
 
 namespace core;
 
+use exceptions\NotFoundException;
+
 class Router extends Controller
 {
     public $current_rout;
-    public $match;
+    public $match = false;
 
     public array $routes;
 
     public function route($prefix = '')
     {
         foreach ($this->routes[0] as $key => $route) {
-
-            if ($this->currentRoute() === '') {
+            /*if ($this->currentRoute() === '') {
                 preg_match('~^' . $key . '$~', $this->currentRoute(), $matches);
             } else {
                 preg_match('~^' . $key . $prefix . '$~', $this->currentRoute(), $matches);
@@ -22,7 +23,23 @@ class Router extends Controller
             if (!empty($matches)) {
                 $this->match = true;
                 break;
+            }*/
+
+            preg_match('~^' . $key . '$~', $this->currentRoute(), $matches);
+
+            if (!empty($matches)) {
+                $this->match = true;
+                break;
             }
+        }
+
+//        var_dump($matches);
+//        var_dump($this->match);
+
+        if (!$this->match) {
+            throw new NotFoundException();
+//            $this->view->render('error/not-found', [], 404, 'error');
+//            return;
         }
 
         unset($matches[0]);
@@ -43,5 +60,10 @@ class Router extends Controller
     {
         $this->routes[] = $param;
         return $this->routes;
+    }
+
+    public static function showCurrent()
+    {
+        return (new Router)->currentRoute();
     }
 }

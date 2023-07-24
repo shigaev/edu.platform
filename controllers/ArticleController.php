@@ -5,6 +5,7 @@ namespace controllers;
 use core\Controller;
 use core\Db;
 use exceptions\Forbidden;
+use exceptions\NotFoundException;
 use exceptions\UnauthorizedException;
 use models\Article;
 use models\User;
@@ -25,7 +26,11 @@ class ArticleController extends Controller
     public function view(int $id)
     {
         $article = Article::findOne($id);
-        $title = $article->getTitle();
+        $title = 'Статья' . $id;
+
+        if ($article === null) {
+            throw new NotFoundException();
+        }
 
         $this->view->render('article/view', [
             'title' => $title,
@@ -36,11 +41,30 @@ class ArticleController extends Controller
     public function edit($id)
     {
         $article = Article::findOne($id);
-        $title = 'Edit | ' . $article->getTitle();
 
-        /*$article->setTitle('Новый заголовок');
-        $article->setContent('Новый контент статьи');*/
-        $article->save();
+        if ($article) {
+            $title = 'Edit | ' . $article->getTitle();
+        }
+
+        if ($this->user === null) {
+            throw new UnauthorizedException();
+        }
+
+        if ($article === null) {
+            throw new NotFoundException();
+        }
+
+        if (!empty($_POST)) {
+            try {
+                $article->updateArrayFrom($_POST);
+            } catch (\InvalidArgumentException $e) {
+                $this->view->render('articles/edit', ['error' => $e->getMessage(), 'article' => $article]);
+                return;
+            }
+
+            header('Location: /articles/' . $article->getId(), true, 302);
+            exit();
+        }
 
         $this->view->render('article/edit', ['article' => $article, 'title' => $title]);
     }

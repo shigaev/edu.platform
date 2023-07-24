@@ -16,4 +16,7 @@ try {
     $user = UserAuthService::getUserByToken();
     $view = new \core\View('../views/');
     $view->render('error/403', ['error' => $e->getMessage(), 'title' => 'Недостаточно прав', 'user' => $user], 403);
+} catch (\exceptions\NotFoundException $e) {
+    $view = new \core\View('../views/');
+    $view->render('error/not-found', ['error' => $e->getMessage(), 'title' => 'Not found'], 404, 'error');
 }

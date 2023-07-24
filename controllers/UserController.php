@@ -3,6 +3,7 @@
 namespace controllers;
 
 use core\Controller;
+use core\Router;
 use exceptions\InvalidArgument;
 use models\User;
 use services\UserAuthService;
@@ -38,7 +39,7 @@ class UserController extends Controller
             try {
                 $user = User::signIn($_POST);
                 UserAuthService::createToken($user);
-                header('Location: /');
+                header('Location: /' . Router::showCurrent());
                 exit();
             } catch (InvalidArgument $e) {
                 $this->view->render('user/login', ['error' => $e->getMessage(), 'title' => $title]);

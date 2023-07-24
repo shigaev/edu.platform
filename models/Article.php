@@ -34,6 +34,10 @@ class Article extends ActiveRecord
         return $this->title;
     }
 
+    /**
+     * @param $title
+     * @return void
+     */
     public function setTitle($title)
     {
         $this->title = $title;
@@ -96,5 +100,31 @@ class Article extends ActiveRecord
         $article->save();
 
         return $article;
+    }
+
+    /**
+     * @param array $fields
+     * @return $this
+     */
+    public function updateArrayFrom(array $fields): Article
+    {
+        if (empty($fields['title'])) {
+            throw new InvalidArgumentException('Не передано название статьи');
+        }
+
+        if (empty($fields['description'])) {
+            throw new InvalidArgumentException('Не передано описание');
+        }
+
+        if (empty($fields['content'])) {
+            throw new InvalidArgumentException('Не передан текст статьи');
+        }
+
+        $this->setTitle($fields['title']);
+        $this->setDescription($fields['description']);
+        $this->setContent($fields['content']);
+        $this->save();
+
+        return $this;
     }
 }
