@@ -11,6 +11,9 @@ class Router extends Controller
 
     public array $routes;
 
+    /**
+     * @throws NotFoundException
+     */
     public function route($prefix = '')
     {
         foreach ($this->routes[0] as $key => $route) {
@@ -24,7 +27,6 @@ class Router extends Controller
                 $this->match = true;
                 break;
             }*/
-
             preg_match('~^' . $key . '$~', $this->currentRoute(), $matches);
 
             if (!empty($matches)) {
@@ -33,18 +35,15 @@ class Router extends Controller
             }
         }
 
-//        var_dump($matches);
-//        var_dump($this->match);
+//        var_dump($route);
 
         if (!$this->match) {
             throw new NotFoundException();
-//            $this->view->render('error/not-found', [], 404, 'error');
-//            return;
         }
 
         unset($matches[0]);
 
-        $controllerName = '\controllers\\' . $route[0] . 'Controller';
+        $controllerName = '\frontend\controllers\\' . $route[0] . 'Controller';
         $actionName = $route[1];
 
         $controller = new $controllerName;

@@ -12,7 +12,7 @@ class Settings
 
     private function __construct()
     {
-        $this->_settings = require '../config/settings.php';
+        $this->_settings = require __DIR__ . '/../config/settings.php';
     }
 
     private function __clone()
@@ -20,7 +20,7 @@ class Settings
         // TODO: Implement __clone() method.
     }
 
-    public static function init()
+    public static function init(): ?Settings
     {
         if (is_null(self::$_object)) {
             self::$_object = new Settings();

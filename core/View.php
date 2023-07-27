@@ -2,8 +2,6 @@
 
 namespace core;
 
-use Cassandra\Set;
-
 class View
 {
     public $viewPath;
@@ -35,9 +33,9 @@ class View
         ob_clean();
 
         if (!empty($layout)) {
-            require_once "../views/layout/{$layout}.php";
+            require_once __DIR__ . "/../frontend/views/layout/{$layout}.php";
         } else {
-            require_once "../views/layout/{$this->layout}.php";
+            require_once __DIR__ . "/../frontend/views/layout/{$this->layout}.php";
         }
     }
 }
