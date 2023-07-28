@@ -24,8 +24,8 @@ module.exports = {
         hot: false,
         proxy: {
             'http://edu.platform/': {
-                target: `http://localhost/edu.platform/public/`,
-                pathRewrite: {'^/edu.platform/public/': ''},
+                target: `http://localhost/edu.platform/frontend/public/`,
+                pathRewrite: {'^/edu.platform/frontend/public/': ''},
             }
         },
         watchFiles: ['**/*.php', 'src/**/*.css', 'src/**/*.scss'],
@@ -37,7 +37,7 @@ module.exports = {
     output: {
         // filename: './js/[name].[contenthash].js',
         filename: './js/[name].js',
-        path: path.resolve(__dirname, 'public'),
+        path: path.resolve(__dirname, 'frontend/public'),
         clean: false
     },
     devtool: 'inline-source-map',

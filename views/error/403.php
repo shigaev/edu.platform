@@ -1,1 +1,0 @@
-<b style="color: red;"><?= $error ?></b>

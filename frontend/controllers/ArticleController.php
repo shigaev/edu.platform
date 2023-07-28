@@ -80,16 +80,6 @@ class ArticleController extends Controller
     {
         $title = 'Add article | FRONTEND';
 
-        /*$author = User::findOne(1);
-        $article = new Article();
-        $article->setAuthor($author);
-
-        $article->setTitle('Новый заголовок 3');
-        $article->setContent('Новый контент статьи 3');
-
-        $article->save();*/
-
-
         if ($this->user === null) {
             throw new UnauthorizedException();
         }
@@ -109,7 +99,6 @@ class ArticleController extends Controller
             header('Location: /articles/' . $article->getId(), true, 302);
             exit();
         }
-
 
         $this->view->render('article/add', ['title' => $title]);
     }
