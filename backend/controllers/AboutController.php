@@ -1,6 +1,6 @@
 <?php
 
-namespace frontend\controllers;
+namespace backend\controllers;
 
 use core\Controller;
 
@@ -8,8 +8,7 @@ class AboutController extends Controller
 {
     public function index()
     {
-        $title = 'About page | FRONTEND';
-
+        $title = 'About page | BACKEND';
         $this->view->render('about/index', ['title' => $title]);
     }
 

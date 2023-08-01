@@ -6,14 +6,16 @@ class View
 {
     public $viewPath;
     public $layout;
+    public $dirSettings;
 
-    private $vars = [];
+    private array $vars = [];
 
     public function __construct($viewPath)
     {
         $init = Settings::init();
         $this->viewPath = $viewPath;
         $this->layout = $init->layout;
+        $this->dirSettings = require dirname(realpath($this->viewPath)) . '\\config\\settings.php';
     }
 
     public function setVars(string $name, $value): void
@@ -35,7 +37,9 @@ class View
         if (!empty($layout)) {
             require_once __DIR__ . "/../frontend/views/layout/{$layout}.php";
         } else {
-            require_once __DIR__ . "/../frontend/views/layout/{$this->layout}.php";
+            $path = dirname(realpath($this->viewPath . $viewName . '.php'), 3);
+
+            require_once $path . "/views/layout/{$this->dirSettings['layout']}.php";
         }
     }
 }

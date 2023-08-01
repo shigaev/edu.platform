@@ -7,7 +7,6 @@ use exceptions\NotFoundException;
 use exceptions\UnauthorizedException;
 use services\UserAuthService;
 
-require_once '../config/settings.php';
 require_once '../../core/Autoloader.php';
 
 try {

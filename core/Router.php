@@ -14,7 +14,7 @@ class Router extends Controller
     /**
      * @throws NotFoundException
      */
-    public function route($prefix = '')
+    public function route($dir, $prefix = '')
     {
         foreach ($this->routes[0] as $key => $route) {
             /*if ($this->currentRoute() === '') {
@@ -43,8 +43,10 @@ class Router extends Controller
 
         unset($matches[0]);
 
-        $controllerName = '\frontend\controllers\\' . $route[0] . 'Controller';
+//        $controllerName = '\frontend\controllers\\' . $route[0] . 'Controller';
+        $controllerName = '\\' . $dir . '\controllers\\' . $route[0] . 'Controller';
         $actionName = $route[1];
+
 
         $controller = new $controllerName;
         $controller->$actionName(...$matches);

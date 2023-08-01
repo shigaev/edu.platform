@@ -1,17 +1,14 @@
 <?php
 
-namespace frontend\controllers;
+namespace backend\controllers;
 
 use core\Controller;
-use core\Db;
-use models\About;
-use models\User;
 
 class MainController extends Controller
 {
     public function index()
     {
-        $title = 'Main page | 123 FRONTEND';
+        $title = 'Main page | BACKEND';
 
         $mainPage = $this->instance->query('SELECT * FROM `main_page`');
 
