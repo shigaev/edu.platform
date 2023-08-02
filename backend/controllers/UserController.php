@@ -2,10 +2,11 @@
 
 namespace backend\controllers;
 
+use common\models\User;
 use core\Controller;
 use core\Router;
 use exceptions\InvalidArgument;
-use backend\models\User;
+//use backend\models\User;
 use services\UserAuthService;
 
 class UserController extends Controller

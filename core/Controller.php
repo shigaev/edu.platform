@@ -2,7 +2,8 @@
 
 namespace core;
 
-use frontend\models\User;
+//use frontend\models\User;
+use common\models\User;
 use services\UserAuthService;
 
 class Controller

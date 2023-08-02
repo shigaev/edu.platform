@@ -2,6 +2,7 @@
 
 namespace frontend\models;
 
+use common\models\User;
 use core\ActiveRecord;
 use InvalidArgumentException;
 
