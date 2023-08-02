@@ -99,7 +99,9 @@
 
 <main class="flex-shrink-0 m-3">
     <div class="container">
-        <?= $content ?>
+        <div class="bg-admin">
+            <?= $content ?>
+        </div>
     </div>
 </main>
 <div class="container mt-auto">

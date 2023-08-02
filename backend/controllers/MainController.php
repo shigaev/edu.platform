@@ -3,15 +3,17 @@
 namespace backend\controllers;
 
 use core\Controller;
+use exceptions\UnauthorizedException;
 
 class MainController extends Controller
 {
-    public function index()
+    public function __construct()
     {
-        $title = 'Main page | BACKEND';
+        parent::__construct();
 
-        $mainPage = $this->instance->query('SELECT * FROM `main_page`');
-
-        $this->view->render('main/index', ['title' => $title, 'main' => $mainPage]);
+        if ($this->user == null) {
+            header("Location: http://edu.platform.admin/users/login", '', 302);
+            exit();
+        }
     }
 }

@@ -4,7 +4,7 @@ namespace backend\controllers;
 
 use core\Controller;
 
-class AboutController extends Controller
+class AboutController extends MainController
 {
     public function index()
     {

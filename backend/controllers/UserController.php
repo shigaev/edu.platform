@@ -6,6 +6,7 @@ use common\models\User;
 use core\Controller;
 use core\Router;
 use exceptions\InvalidArgument;
+
 //use backend\models\User;
 use services\UserAuthService;
 
@@ -40,7 +41,8 @@ class UserController extends Controller
             try {
                 $user = User::signIn($_POST);
                 UserAuthService::createToken($user);
-                header('Location: /' . Router::showCurrent());
+//                header('Location: /' . Router::showCurrent());
+                header('Location: http://edu.platform.admin/');
                 exit();
             } catch (InvalidArgument $e) {
                 $this->view->render('user/login', ['error' => $e->getMessage(), 'title' => $title]);
@@ -48,7 +50,7 @@ class UserController extends Controller
             }
         }
 
-        $this->view->render('user/login', ['title' => $title]);
+        $this->view->render('user/login', ['title' => $title], 200, 'login');
     }
 
     public function logout()

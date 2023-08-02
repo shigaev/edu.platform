@@ -4,7 +4,7 @@ namespace core;
 
 use exceptions\NotFoundException;
 
-class Router extends Controller
+class Router
 {
     public $current_rout;
     public $match = false;

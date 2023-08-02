@@ -5,6 +5,9 @@ import 'bootstrap-icons/font/fonts/bootstrap-icons.woff2';
 import 'bootstrap-icons/bootstrap-icons';
 import './favicon';
 import './scss/main';
+
+console.log('Backend');
+
 // import {Header} from "./js/components/header";
 // import {Footer} from "./js/components/footer";
 //

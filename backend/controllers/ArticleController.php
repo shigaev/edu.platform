@@ -9,7 +9,7 @@ use exceptions\UnauthorizedException;
 use frontend\models\Article;
 use InvalidArgumentException;
 
-class ArticleController extends Controller
+class ArticleController extends MainController
 {
     public function index()
     {

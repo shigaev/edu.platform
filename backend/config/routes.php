@@ -2,7 +2,7 @@
 
 $routes = new \core\Router();
 $routes->getRoutes([
-    '' => ['Main', 'index'],
+    '' => ['Index', 'index'],
     'about' => ['About', 'index'],
     'about/news' => ['About', 'news'],
     'articles' => ['Article', 'index'],
@@ -13,6 +13,5 @@ $routes->getRoutes([
     'users/register' => ['User', 'signUp'],
     'users/login' => ['User', 'signIn'],
     'users/logout' => ['User', 'logout'],
-//    '.*' => ['Error', 'notFound']
 ]);
 $routes->route('backend');
