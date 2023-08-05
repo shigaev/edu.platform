@@ -1,3 +1,49 @@
-.bg-admin {
-  background-color: green;
+:root {
+  // Admin left panel
+  --admin-left-width: 250px;
+  --admin-left-bg: #000d1d;
+  // Menu admin left panel
+  --menu-link-color: #ffffff;
+  --menu-link-hover: #2b3035;
+}
+
+body {
+  scroll-behavior: smooth;
+}
+
+.admin {
+  display: flex;
+  position: relative;
+  //height: 100%;
+
+  &-left {
+    background-color: var(--admin-left-bg);
+    width: var(--admin-left-width);
+    max-width: var(--admin-left-width);
+    height: 100%;
+    position: fixed;
+    overflow-y: auto;
+  }
+
+  &-right {
+    width: 100%;
+    margin-left: var(--admin-left-width);
+    padding: 10px;
+    //height: 100%;
+  }
+
+  &-content {
+    //height: 100%;
+    background-color: #ffffff;
+    border-radius: 5px;
+    padding: 15px;
+    box-shadow: 0 5px 20px #00000042;
+    overflow: auto;
+    //position: fixed;
+    //overflow-y: auto;
+    //left: 260px;
+    //right: 10px;
+    //bottom: 10px;
+    //top: 10px;
+  }
 }

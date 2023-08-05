@@ -66,14 +66,13 @@
             </div>
         </div>
     </div>
-    <h1>Bootstrap Backend Layout</h1>
+
     <div class="px-3 py-2 border-bottom mb-3">
         <div class="container d-flex flex-wrap justify-content-center">
             <form class="col-12 col-lg-auto mb-2 mb-lg-0 me-lg-auto" role="search">
                 <input type="search" class="form-control" placeholder="Search..." aria-label="Search">
             </form>
             <div class="text-end">
-                <!--                --><?php //var_dump($user); ?>
                 <?php if (!empty($user)): ?>
                     <span class="badge align-items-center mx-3 p-1 pe-2 text-success-emphasis bg-success-subtle border border-success-subtle rounded-pill">
                         <img class="rounded-circle me-1" width="24" height="24"

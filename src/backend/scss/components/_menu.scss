@@ -1,0 +1,24 @@
+.menu {
+  list-style: none;
+  padding: 10px;
+  margin: 5px;
+
+  &__item {
+    padding: 0;
+    margin: 0;
+  }
+
+  &__link {
+    text-decoration: none;
+    color: var(--menu-link-color);
+    transition: .2s;
+    display: block;
+    width: 100%;
+    padding: 5px;
+    border-radius: 5px;
+
+    &:hover {
+      background-color: var(--menu-link-hover);
+    }
+  }
+}

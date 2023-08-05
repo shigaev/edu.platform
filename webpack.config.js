@@ -7,39 +7,13 @@ const TerserPlugin = require("terser-webpack-plugin");
 const isDev = process.env.NODE_ENV === 'development';
 const isProd = !isDev;
 
+const isConfig = 'back';
+
 const config = {
     resolve: {
         extensions: ['.css', '.scss', '.sass', '.js', '.jpg', '.png', '.svg', '.ico', '.json'],
     },
     mode: 'development',
-    entry: {
-        index: path.resolve(__dirname, 'src/index.js'),
-    },
-    /*devServer: {
-        allowedHosts: [
-            'edu.platform',
-        ],
-        host: 'localhost',
-        port: 9092,
-        hot: false,
-        proxy: {
-            'http://edu.platform/': {
-                target: `http://localhost/edu.platform/frontend/public/`,
-                pathRewrite: {'^/edu.platform/frontend/public/': ''},
-            }
-        },
-        watchFiles: ['**!/!*.php', 'src/!**!/!*.css', 'src/!**!/!*.scss'],
-        devMiddleware: {
-            publicPath: path.resolve(__dirname, 'public'),
-            writeToDisk: true,
-        }
-    },*/
-    output: {
-        // filename: './js/[name].[contenthash].js',
-        filename: './js/[name].js',
-        path: path.resolve(__dirname, 'frontend/public'),
-        clean: false
-    },
     devtool: 'inline-source-map',
     optimization: {
         runtimeChunk: 'single',
@@ -139,7 +113,7 @@ const config = {
 };
 
 const frontendConfig = Object.assign({}, config, {
-    name: 'One',
+    name: 'frontend',
     entry: {
         index: path.resolve(__dirname, 'src/frontend/index.js'),
     },
@@ -171,11 +145,11 @@ const frontendConfig = Object.assign({}, config, {
 });
 
 const backendConfig = Object.assign({}, config, {
-    name: 'Two',
+    name: 'backend',
     entry: {
         index: path.resolve(__dirname, 'src/backend/index.js'),
     },
-    /*devServer: {
+    devServer: {
         allowedHosts: [
             'edu.platform.admin',
         ],
@@ -184,16 +158,16 @@ const backendConfig = Object.assign({}, config, {
         hot: false,
         proxy: {
             'http://edu.platform.admin/': {
-                target: `http://localhost/edu.platform.admin/backend/public/`,
-                pathRewrite: {'^/edu.platform.admin/backend/public/': ''},
+                target: `http://localhost/edu.platform/backend/public/`,
+                pathRewrite: {'^/edu.platform/backend/public/': ''},
             }
         },
-        watchFiles: ['**!/!*.php', 'src/!**!/!*.css', 'src/!**!/!*.scss'],
+        watchFiles: ['**/*.php', 'src/!**!/!*.css', 'src/!**/!*.scss'],
         devMiddleware: {
             publicPath: path.resolve(__dirname, 'public'),
             writeToDisk: true,
         }
-    },*/
+    },
     output: {
         // filename: './js/[name].[contenthash].js',
         filename: './js/[name].js',
@@ -202,6 +176,18 @@ const backendConfig = Object.assign({}, config, {
     },
 });
 
-module.exports = [
-    frontendConfig, backendConfig
-];
+if (isConfig === 'front') {
+    module.exports = [
+        frontendConfig
+    ];
+}
+
+if (isConfig === 'back') {
+    module.exports = [
+        backendConfig
+    ];
+}
+
+// module.exports = [
+//     frontendConfig, backendConfig
+// ];
