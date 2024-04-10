@@ -35,7 +35,6 @@ class View
         ob_clean();
 
         if (!empty($layout)) {
-//            require_once __DIR__ . "/../backend/views/layout/{$layout}.php";
             $path = dirname(realpath($this->viewPath . $viewName . '.php'), 3);
 
             require_once $path . "/views/layout/{$layout}.php";
