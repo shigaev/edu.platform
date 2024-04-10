@@ -7,7 +7,7 @@ use exceptions\InvalidArgument;
 
 class User extends \core\ActiveRecord
 {
-    protected $id;
+    protected int $id;
     protected string $username;
 
     protected string $nickname;
@@ -21,13 +21,14 @@ class User extends \core\ActiveRecord
     protected $password_hash;
 
     protected $auth_token;
+    protected $name;
 
     public static function getTableName(): string
     {
         return 'user';
     }
 
-    public function setUserName($name)
+    public function setUserName($name): void
     {
         $this->name = $name;
     }
@@ -37,7 +38,7 @@ class User extends \core\ActiveRecord
         return $this->username;
     }
 
-    public function setNickName($nickname)
+    public function setNickName($nickname): void
     {
         $this->nickname = $nickname;
     }
@@ -47,12 +48,12 @@ class User extends \core\ActiveRecord
         return $this->nickname;
     }
 
-    public function setEmail($email)
+    public function setEmail($email): void
     {
         $this->email = $email;
     }
 
-    public function setUserRole($role)
+    public function setUserRole($role): void
     {
         $this->role = $role;
     }
@@ -127,7 +128,7 @@ class User extends \core\ActiveRecord
         return $user;
     }
 
-    public static function hash($password)
+    public static function hash($password): string
     {
         return password_hash($password, PASSWORD_DEFAULT);
     }
@@ -136,7 +137,7 @@ class User extends \core\ActiveRecord
      * @throws InvalidArgument
      * @throws Exception
      */
-    public static function signIn(array $userData): User
+    public static function signIn(array $userData): \core\ActiveRecord
     {
         if (empty($userData['email'])) {
             throw new InvalidArgument('Email не передан');
@@ -170,7 +171,7 @@ class User extends \core\ActiveRecord
     /**
      * @throws Exception
      */
-    private function refreshAuthToken()
+    private function refreshAuthToken(): void
     {
         $this->auth_token = sha1(random_bytes(100)) . sha1(random_bytes(100));
     }

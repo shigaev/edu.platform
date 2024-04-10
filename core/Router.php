@@ -14,7 +14,7 @@ class Router
     /**
      * @throws NotFoundException
      */
-    public function route($dir, $prefix = '')
+    public function route($dir, $prefix = ''): void
     {
         foreach ($this->routes[0] as $key => $route) {
             preg_match('~^' . $key . '$~', $this->currentRoute(), $matches);

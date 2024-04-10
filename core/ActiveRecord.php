@@ -7,7 +7,7 @@ namespace core;
  */
 abstract class ActiveRecord
 {
-    protected $id;
+    protected int $id;
 
     /**
      * @return int
