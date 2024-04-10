@@ -1,2 +1,3 @@
-RewriteEngine On
-RewriteRule (.*) frontend/public/$1
+# Файл пригодится, если нет доступа к настройкам apache
+# RewriteEngine On
+# RewriteRule (.*) frontend/public/$1
