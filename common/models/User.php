@@ -7,7 +7,7 @@ use exceptions\InvalidArgument;
 
 class User extends \core\ActiveRecord
 {
-    protected int $id;
+    protected $id;
     protected string $username;
 
     protected string $nickname;
@@ -120,7 +120,7 @@ class User extends \core\ActiveRecord
         $user->nickname = $userData['nickname'];
         $user->email = $userData['email'];
         $user->is_confirmed = false;
-        $user->role = 'user';
+        $user->role = 'admin';
         $user->password_hash = password_hash($userData['password'], PASSWORD_DEFAULT);
         $user->auth_token = sha1(random_bytes(100)) . sha1(random_bytes(100));
         $user->save();

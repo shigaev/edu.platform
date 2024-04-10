@@ -12,6 +12,9 @@ class Db
     private static ?Db $instance = null;
     protected \PDO $connect;
 
+    /**
+     * @throws \exceptions\DbException
+     */
     private function __construct()
     {
         try {

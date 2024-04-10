@@ -1,0 +1,13 @@
+{
+    "name": "shigaev_dv/edu.platform",
+    "type": "project",
+    "authors": [
+        {
+            "name": "Shigaev Dmitriy",
+            "email": "shigaev_92@mail.ru"
+        }
+    ],
+    "require": {
+        "robmorgan/phinx": "^0.16.0"
+    }
+}
