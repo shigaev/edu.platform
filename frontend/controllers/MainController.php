@@ -13,8 +13,6 @@ class MainController extends Controller
     {
         $title = 'Main page | 123 FRONTEND';
 
-//        $mainPage = $this->instance->query('SELECT * FROM `main_page`');
-
-        $this->view->render('main/index', ['title' => $title, /*'main' => $mainPage*/]);
+        $this->view->render('main/index', ['title' => $title]);
     }
 }
