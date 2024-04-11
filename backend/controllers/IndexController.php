@@ -10,8 +10,6 @@ class IndexController extends MainController
     {
         $title = 'Main page | BACKEND';
 
-        $mainPage = $this->instance->query('SELECT * FROM `main_page`');
-
-        $this->view->render('main/index', ['title' => $title, 'main' => $mainPage]);
+        $this->view->render('main/index', ['title' => $title]);
     }
 }

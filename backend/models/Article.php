@@ -8,7 +8,7 @@ use InvalidArgumentException;
 
 class Article extends ActiveRecord
 {
-    protected int $id;
+    protected $id;
     protected ?string $title = '';
     protected ?string $description = '';
     protected ?string $content = '';

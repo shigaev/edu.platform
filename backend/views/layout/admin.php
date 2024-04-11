@@ -15,7 +15,7 @@
         <div class="admin-left">
             <ul class="menu">
                 <li class="menu__item">
-                    <a class="menu__link" href="/">Home</a>
+                    <a class="menu__link" href="<?= $this->dirSettings['basePath'] ?>">Home</a>
                 </li>
                 <li class="menu__item">
                     <a class="menu__link" href="/about">About</a>
@@ -34,6 +34,9 @@
         <div class="admin-right h-100">
             <div class="admin-content h-100">
                 <div class="admin-nav">
+                    <a type="button" class="btn btn-primary m-2" href="<?= $this->dirSettings['frontend'] ?>"
+                       target="_blank">На
+                        сайт</a>
                     <a type="button" class="btn btn-warning text-dark m-2" href="/users/logout">Выйти</a>
                 </div>
                 <?= $content ?>
